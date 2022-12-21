@@ -1,9 +1,12 @@
-.wrapper{
-  min-height:100vh;
-  background: linear-gradient(to right bottom, rgba(243, 229, 32, 0.5),rgba(57, 170, 20, 0.5));
-   
+.wrapper {
+  min-height: 100vh;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 238, 4, 0.8),
+    rgba(66, 248, 5, 0.8)
+  );
 }
-.formHr{
-  padding-top: .2rem;
-  background-color:rgb(0, 0, 0);
+.formHr {
+  padding-top: 0.2rem;
+  background-color: rgb(0, 0, 0);
 }

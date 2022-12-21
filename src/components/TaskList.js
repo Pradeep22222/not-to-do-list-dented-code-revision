@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const TaskList = ({title, arrow, list=[]}) => {
+export const TaskList = ({ title, arrow, list = [], switchTask }) => {
   return (
     <div className="mt-3">
       <h2 className="text-center">{title}</h2>
@@ -21,15 +21,18 @@ export const TaskList = ({title, arrow, list=[]}) => {
           </thead>
           <tbody>
             {list.map((item, i) => (
-              <tr>
+              <tr key={i}>
                 <th>
                   <Form.Check type="checkbox" />
                 </th>
-                <td>{ item.task}</td>
-                <td>{ item.hr}hr</td>
+                <td>{item.task}</td>
+                <td>{item.hr}hr</td>
                 <td>
                   {arrow === "right" ? (
-                    <Button variant="success">
+                    <Button
+                      variant="success"
+                      onClick={() => {switchTask(i, "bad")}}
+                    >
                       <i className="fa-solid fa-arrow-right"></i>
                     </Button>
                   ) : (
@@ -45,4 +48,4 @@ export const TaskList = ({title, arrow, list=[]}) => {
       </div>
     </div>
   );
-}
+};
