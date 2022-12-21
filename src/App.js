@@ -1,6 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { AddForm } from "./components/AddForm";
 import { ListArea } from "./components/ListArea";
 import { useState } from "react";
@@ -43,9 +43,22 @@ function App() {
         const tempArgs = ids.filter(id => !toDeleteIds.includes(id))
         setIds([...tempArgs]);
       } 
+      return
+    }
+    if (checked) {
+      // add individual id 
+    }
+    else {
+      // remove individual id
     }
   }
   console.log(ids);
+  const handleOnDelete = () => {
+    if(window.confirm("Are you sure, you want to delete the selected item")){const tempArg = taskList.filter((item) => !ids.includes(item.id));
+    setTaskList(tempArg);
+    setIds([]);}
+    return;
+  }
   return (
     <div className="wrapper">
       <Container>
@@ -61,6 +74,11 @@ function App() {
           switchTask={switchTask}
           handleOnCheck={handleOnCheck}
         ></ListArea>
+        {ids.length>0 && (
+          <Button variant="danger" className="mt-2" onClick={handleOnDelete}>
+            Delete selected tasks
+          </Button>
+        )}
       </Container>
     </div>
   );
