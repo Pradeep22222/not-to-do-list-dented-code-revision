@@ -7,6 +7,7 @@ import { useState } from "react";
 const wklyHr = 7 * 24;
 function App() {
   const [taskList, setTaskList] = useState([]);
+  const [ids, setIds] = useState([]);
   const total=taskList.reduce((acc, item)=>acc + +item.hr, 0)
   const addTask = (task) => {
     if (total + +task.hr > wklyHr) {
@@ -23,6 +24,28 @@ function App() {
     });
     setTaskList(switchedArg);
   };
+  const handleOnCheck = (e) => {
+    const { checked, value,} = e.target;
+
+    if (value === "entry" || value==="bad") {
+      // if ticked add all ids in ids  otherwise take them out.
+      // add all entry list ids
+      let toDeleteIds = [];
+      taskList.forEach((item) => {
+        if (item.type === value) {
+          toDeleteIds.push(item.id);
+        }
+      });
+      if (checked) {
+        setIds([...ids, ...toDeleteIds]);
+      } else {
+        // remove all list ids
+        const tempArgs = ids.filter(id => !toDeleteIds.includes(id))
+        setIds([...tempArgs]);
+      } 
+    }
+  }
+  console.log(ids);
   return (
     <div className="wrapper">
       <Container>
@@ -32,7 +55,12 @@ function App() {
         </div>
         <hr className="formHr" />
 
-        <ListArea taskList={taskList} switchTask={switchTask}></ListArea>
+        <ListArea
+          ids={ids}
+          taskList={taskList}
+          switchTask={switchTask}
+          handleOnCheck={handleOnCheck}
+        ></ListArea>
       </Container>
     </div>
   );
