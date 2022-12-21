@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -31,12 +31,19 @@ export const TaskList = ({ title, arrow, list = [], switchTask }) => {
                   {arrow === "right" ? (
                     <Button
                       variant="success"
-                      onClick={() => {switchTask(i, "bad")}}
+                      onClick={() => {
+                        switchTask(item.id, "bad");
+                      }}
                     >
                       <i className="fa-solid fa-arrow-right"></i>
                     </Button>
                   ) : (
-                    <Button variant="danger">
+                    <Button
+                      variant="danger"
+                      onClick={() => {
+                        switchTask(item.id, "entry");
+                      }}
+                    >
                       <i className="fa-solid fa-arrow-left"></i>
                     </Button>
                   )}
