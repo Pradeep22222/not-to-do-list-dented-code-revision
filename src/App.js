@@ -47,9 +47,12 @@ function App() {
     }
     if (checked) {
       // add individual id 
+      setIds([...ids, value])
     }
     else {
       // remove individual id
+      const filteredArg = ids.filter((id) => id !== value)
+      setIds(filteredArg)
     }
   }
   console.log(ids);

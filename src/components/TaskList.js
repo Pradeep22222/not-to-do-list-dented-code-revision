@@ -23,7 +23,9 @@ export const TaskList = ({ title, arrow, list = [], switchTask, handleOnCheck, n
             {list.map((item, i) => (
               <tr key={i}>
                 <th>
-                  <Form.Check type="checkbox" checked={ids.includes(item.id)} />
+                  <Form.Check type="checkbox" checked={ids.includes(item.id)}
+                    value={item.id}
+                    onChange={handleOnCheck} />
                 </th>
                 <td>{item.task}</td>
                 <td>{item.hr}hr</td>
